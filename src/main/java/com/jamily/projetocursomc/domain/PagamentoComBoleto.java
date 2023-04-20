@@ -2,6 +2,7 @@ package com.jamily.projetocursomc.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jamily.projetocursomc.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
@@ -9,7 +10,10 @@ import jakarta.persistence.Entity;
 @Entity
 public class PagamentoComBoleto extends Pagamento{
 	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataVencimento;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataPagamento;
 	private static final long serialVersionUID = 1L;
 	
