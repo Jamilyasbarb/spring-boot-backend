@@ -3,7 +3,7 @@ package com.jamily.projetocursomc.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +29,7 @@ public class Endereco implements Serializable{
 	@JoinColumn(name="cliente_id")
 	private Cidade cidade;
 
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
 	private Cliente cliente;
