@@ -35,13 +35,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void>insert(@Valid @RequestBody CategoriaDTO catDto){
-		Categoria cat = service.fromDTO(catDto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(cat.getId()).toUri();
-		return ResponseEntity.created(uri).build();
-	}
+	
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody Categoria categoria,@PathVariable Integer id){
@@ -74,5 +68,13 @@ public class CategoriaResource {
 		Page<CategoriaDTO> listaCatDto = listaCat.map(elemento -> new 
 				CategoriaDTO(elemento));  
 		return ResponseEntity.ok().body(listaCatDto);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void>insert(@Valid @RequestBody CategoriaDTO catDto){
+		Categoria cat = service.fromDTO(catDto);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(cat.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 }
