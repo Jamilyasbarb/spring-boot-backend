@@ -34,8 +34,15 @@ public class CategoriaService {
 	}
 
 	public Categoria update(Categoria categoria) {
-		find(categoria.getId());
-		return repo.save(categoria);
+		//pega os dados do banco
+		Categoria categoriaBanco = find(categoria.getId());
+		updateData(categoriaBanco, categoria);
+		return repo.save(categoriaBanco);
+	}
+
+	private void updateData(Categoria categoriaBanco, Categoria categoria) {
+		//muda apeanas campos especificos
+		categoriaBanco.setNome(categoria.getNome());
 	}
 
 	public void delete(Integer id) {
