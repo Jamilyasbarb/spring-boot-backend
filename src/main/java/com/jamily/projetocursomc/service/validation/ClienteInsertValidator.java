@@ -3,8 +3,12 @@ package com.jamily.projetocursomc.service.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jamily.projetocursomc.domain.Cliente;
 import com.jamily.projetocursomc.domain.enums.TipoCliente;
 import com.jamily.projetocursomc.dto.ClienteNewDTO;
+import com.jamily.projetocursomc.repositories.ClienteRepository;
 import com.jamily.projetocursomc.resources.exceptions.FieldMessage;
 import com.jamily.projetocursomc.service.validation.utils.BR;
 
@@ -15,9 +19,13 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 	@Override
 	public void initialize(ClienteInsert ann) {
 	}
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 
 	@Override
 	public boolean isValid(ClienteNewDTO cliDto, ConstraintValidatorContext context) {
+		// inclua os testes aqui, inserindo erros na lista
 		List<FieldMessage> listaErros = new ArrayList<>();
 		if(cliDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod())&& !BR.isValidCPF(cliDto.getCpfOuCnpj())) {
 			listaErros.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));
@@ -26,7 +34,12 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 		if(cliDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod())&& !BR.isValidCNPJ(cliDto.getCpfOuCnpj())) {
 			listaErros.add(new FieldMessage("cpfOuCnpj", "CNPJ inválido"));
 		}
-		// inclua os testes aqui, inserindo erros na lista
+		
+		Cliente aux = clienteRepository.findByEmail(cliDto.getEmail());
+		
+		if(aux != null) {
+			listaErros.add(new FieldMessage("email", "o email já existe"));
+		}
 
 		for (FieldMessage e : listaErros) {
 			// inserindo error personalizados para a lista de erros do framework
