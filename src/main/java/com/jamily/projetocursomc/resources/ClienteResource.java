@@ -1,6 +1,7 @@
 package com.jamily.projetocursomc.resources;
 
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jamily.projetocursomc.domain.Cliente;
 import com.jamily.projetocursomc.dto.ClienteDTO;
+import com.jamily.projetocursomc.dto.ClienteNewDTO;
 import com.jamily.projetocursomc.service.ClienteService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value="/clientes")
@@ -62,5 +67,14 @@ public class ClienteResource {
 		Page<ClienteDTO> listaCatDto = listaCat.map(elemento -> new 
 				ClienteDTO(elemento));  
 		return ResponseEntity.ok().body(listaCatDto);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void>insert(@Valid @RequestBody ClienteNewDTO cliDto){
+		Cliente cli = service.fromDTO(cliDto);
+		cli = service.insert(cli);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(cli.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 }
