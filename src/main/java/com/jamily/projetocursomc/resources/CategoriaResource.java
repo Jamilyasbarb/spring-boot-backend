@@ -20,6 +20,8 @@ import com.jamily.projetocursomc.domain.Categoria;
 import com.jamily.projetocursomc.dto.CategoriaDTO;
 import com.jamily.projetocursomc.service.CategoriaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
@@ -34,10 +36,10 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void>insert(@RequestBody Categoria categoria){
-		categoria = service.insert(categoria);
+	public ResponseEntity<Void>insert(@Valid @RequestBody CategoriaDTO catDto){
+		Categoria cat = service.fromDTO(catDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(categoria.getId()).toUri();
+				.path("/{id}").buildAndExpand(cat.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
