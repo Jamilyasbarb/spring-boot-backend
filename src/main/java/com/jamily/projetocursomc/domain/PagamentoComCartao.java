@@ -1,10 +1,12 @@
 package com.jamily.projetocursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.jamily.projetocursomc.domain.enums.EstadoPagamento;
 
 import jakarta.persistence.Entity;
 
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento{
 	
 	private Integer numeroDeParcelas;
