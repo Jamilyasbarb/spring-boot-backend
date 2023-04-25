@@ -15,6 +15,7 @@ import com.jamily.projetocursomc.domain.Cidade;
 import com.jamily.projetocursomc.domain.Cliente;
 import com.jamily.projetocursomc.domain.Endereco;
 import com.jamily.projetocursomc.domain.enums.TipoCliente;
+import com.jamily.projetocursomc.dto.ClienteDTO;
 import com.jamily.projetocursomc.dto.ClienteNewDTO;
 import com.jamily.projetocursomc.repositories.ClienteRepository;
 import com.jamily.projetocursomc.repositories.EnderecoRepository;
@@ -68,6 +69,10 @@ public class ClienteService {
 			String orderBy, String direction){
 		PageRequest pageRequest =  PageRequest.of(page, linesPerPage,  Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Cliente fromDTO(ClienteDTO cliDto) {
+		return new Cliente(cliDto.getId(), cliDto.getNome(),cliDto.getEmail(),null,null);
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO cliDto) {
