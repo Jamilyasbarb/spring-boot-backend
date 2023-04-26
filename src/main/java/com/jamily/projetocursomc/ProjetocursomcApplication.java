@@ -1,26 +1,10 @@
 package com.jamily.projetocursomc;
 
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.jamily.projetocursomc.domain.Categoria;
-import com.jamily.projetocursomc.domain.Cidade;
-import com.jamily.projetocursomc.domain.Cliente;
-import com.jamily.projetocursomc.domain.Endereco;
-import com.jamily.projetocursomc.domain.Estado;
-import com.jamily.projetocursomc.domain.ItemPedido;
-import com.jamily.projetocursomc.domain.Pagamento;
-import com.jamily.projetocursomc.domain.PagamentoComBoleto;
-import com.jamily.projetocursomc.domain.PagamentoComCartao;
-import com.jamily.projetocursomc.domain.Pedido;
-import com.jamily.projetocursomc.domain.Produto;
-import com.jamily.projetocursomc.domain.enums.EstadoPagamento;
-import com.jamily.projetocursomc.domain.enums.TipoCliente;
 import com.jamily.projetocursomc.repositories.CategoriaRepository;
 import com.jamily.projetocursomc.repositories.CidadeRepository;
 import com.jamily.projetocursomc.repositories.ClienteRepository;

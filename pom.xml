@@ -50,9 +50,14 @@
 		<dependency>
 		    <groupId>org.hibernate.validator</groupId>
 		    <artifactId>hibernate-validator</artifactId>
-		    <version>8.0.0.Final</version>
+	    </dependency>
+			
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.33</version>
 		</dependency>
-		
+			
 	</dependencies>
 
 	<build>
