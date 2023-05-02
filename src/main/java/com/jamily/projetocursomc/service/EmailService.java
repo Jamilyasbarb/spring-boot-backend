@@ -1,10 +1,10 @@
 package com.jamily.projetocursomc.service;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.mail.SimpleMailMessage;
 
 import com.jamily.projetocursomc.domain.Pedido;
-
-import jakarta.mail.internet.MimeMessage;
 
 public interface EmailService {
 

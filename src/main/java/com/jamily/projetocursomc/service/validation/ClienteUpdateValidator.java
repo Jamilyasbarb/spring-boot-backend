@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
@@ -11,10 +15,6 @@ import com.jamily.projetocursomc.domain.Cliente;
 import com.jamily.projetocursomc.dto.ClienteDTO;
 import com.jamily.projetocursomc.repositories.ClienteRepository;
 import com.jamily.projetocursomc.resources.exceptions.FieldMessage;
-
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 
 public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
 	

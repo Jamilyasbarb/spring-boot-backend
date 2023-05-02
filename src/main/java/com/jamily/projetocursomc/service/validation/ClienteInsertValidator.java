@@ -3,6 +3,9 @@ package com.jamily.projetocursomc.service.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jamily.projetocursomc.domain.Cliente;
@@ -11,9 +14,6 @@ import com.jamily.projetocursomc.dto.ClienteNewDTO;
 import com.jamily.projetocursomc.repositories.ClienteRepository;
 import com.jamily.projetocursomc.resources.exceptions.FieldMessage;
 import com.jamily.projetocursomc.service.validation.utils.BR;
-
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
 	@Override

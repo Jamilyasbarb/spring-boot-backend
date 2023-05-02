@@ -3,6 +3,8 @@ package com.jamily.projetocursomc.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +16,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jamily.projetocursomc.domain.Pedido;
 import com.jamily.projetocursomc.service.PedidoService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value="/pedidos")

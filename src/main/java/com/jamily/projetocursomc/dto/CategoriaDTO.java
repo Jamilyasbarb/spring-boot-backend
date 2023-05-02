@@ -2,11 +2,11 @@ package com.jamily.projetocursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.jamily.projetocursomc.domain.Categoria;
-
-import jakarta.validation.constraints.NotEmpty;
 
 public class CategoriaDTO  implements Serializable{
 	private static final long serialVersionUID = 1L;

@@ -2,11 +2,11 @@ package com.jamily.projetocursomc.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.jamily.projetocursomc.domain.enums.EstadoPagamento;
-
-import jakarta.persistence.Entity;
 
 @Entity
 @JsonTypeName("pagamentoComBoleto")
