@@ -20,6 +20,7 @@ import com.jamily.projetocursomc.domain.PagamentoComCartao;
 import com.jamily.projetocursomc.domain.Pedido;
 import com.jamily.projetocursomc.domain.Produto;
 import com.jamily.projetocursomc.domain.enums.EstadoPagamento;
+import com.jamily.projetocursomc.domain.enums.Perfil;
 import com.jamily.projetocursomc.domain.enums.TipoCliente;
 import com.jamily.projetocursomc.repositories.CategoriaRepository;
 import com.jamily.projetocursomc.repositories.CidadeRepository;
@@ -125,13 +126,19 @@ public class DBService {
 		Cliente cli1 = new Cliente(null, "Maria Silva", "mily.yasbarb@gmail.com", "38989078967", TipoCliente.PESSOAFISICA, bCrypt.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("128776758839", "983476586"));
 		
+		Cliente cli2 = new Cliente(null, "Ana Costa", "sjc.jamilyybarbosa@gmail.com", "10715858009", TipoCliente.PESSOAFISICA, bCrypt.encode("123"));
+		cli2.getTelefones().addAll(Arrays.asList("12987655423","129866534"));
+		cli2.addPerfil(Perfil.ADMIN);
+		
 		Endereco end1 = new Endereco(null, "Rua Vera", "700", "casa", "Jardim", "187664",cli1, c1);
 		Endereco end2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "18777012",cli1, c2);
+		Endereco end3 = new Endereco(null, "Rua Marginal", "207",null, "Vila", "9937012",cli2, c2);
 		
 		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+		cli2.getEnderecos().addAll(Arrays.asList(end3));
 		
-		clienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(end1,end2));
+		clienteRepository.saveAll(Arrays.asList(cli1,cli2));
+		enderecoRepository.saveAll(Arrays.asList(end1,end2,end3));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
 		Pedido pedido1 = new Pedido(null, sdf.parse("20/04/2023 15:33"), cli1, end1);
