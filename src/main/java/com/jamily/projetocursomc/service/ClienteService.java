@@ -48,6 +48,7 @@ public class ClienteService {
 
 	public Cliente find(Integer id) {
 		
+		//usuario logado
 		UserSS user = UserService.authenticated();
 		
 		if (user ==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
