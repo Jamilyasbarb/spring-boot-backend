@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import com.jamily.projetocursomc.domain.Cliente;
 import com.jamily.projetocursomc.domain.Pedido;
 
 public abstract class AbstractEmailService implements EmailService {
@@ -34,21 +35,31 @@ public abstract class AbstractEmailService implements EmailService {
 
 	protected SimpleMailMessage prepareSimpleMainMessageFromPedido(Pedido pedido) {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		
+		mailMessage.setTo(pedido.getCliente().getEmail());// quem esta recebendo
+		mailMessage.setFrom(sender);// quem esta enviando
+		mailMessage.setSubject("Pedido Confirmado! Código: " + pedido.getId());// Qual o assunto do email
+		mailMessage.setSentDate(new Date(System.currentTimeMillis()));// A data
+		mailMessage.setText(pedido.toString());// o corpo do email
+		
+		return mailMessage;
+	}
+	
+	@Override
+	public void sendNewPasswordEmail(Cliente cliente, String newPass) {
+		SimpleMailMessage mailMessage = prepareNewPasswordEmail(cliente, newPass);
+		sendEmail(mailMessage);
+	}
 
-		// quem esta recebendo
-		mailMessage.setTo(pedido.getCliente().getEmail());
-
-		// quem esta enviando
-		mailMessage.setFrom(sender);
-
-		// Qual o assunto do email
-		mailMessage.setSubject("Pedido Confirmado! Código: " + pedido.getId());
-
-		// A data
-		mailMessage.setSentDate(new Date(System.currentTimeMillis()));
-
-		// o corpo do email
-		mailMessage.setText(pedido.toString());
+	private SimpleMailMessage prepareNewPasswordEmail(Cliente cliente, String newPass) {
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
+		
+		mailMessage.setTo(cliente.getEmail());// quem esta recebendo
+		mailMessage.setFrom(sender);// quem esta enviando
+		mailMessage.setSubject("Solicitação de NOVA SENHA");// Qual o assunto do email
+		mailMessage.setSentDate(new Date(System.currentTimeMillis()));// A data
+		mailMessage.setText("Nova Senha: " + newPass);// o corpo do email
+		
 		return mailMessage;
 	}
 
