@@ -23,9 +23,6 @@ import com.jamily.projetocursomc.security.JWTAuthenticationFilter;
 import com.jamily.projetocursomc.security.JWTAuthorizationFilter;
 import com.jamily.projetocursomc.security.JWTUtil;
 
-
-
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -50,7 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	};
 	private static final String[]PUBLIC_MATCHERS_POST= {
 			"/clientes",
-			"/clientes/picture",
 			"/auth/forgot/**"
 	};
 	

@@ -35,6 +35,8 @@ public class Cliente implements Serializable{
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	private String imagemUrl;
+	
 	@JsonIgnore
 	private String senha;
 
@@ -152,6 +154,14 @@ public class Cliente implements Serializable{
 		this.senha = senha;
 	}
 	
+	public String getImagemUrl() {
+		return imagemUrl;
+	}
+	
+	public void setImagemUrl(String imagemUrl) {
+		this.imagemUrl = imagemUrl;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -166,6 +176,7 @@ public class Cliente implements Serializable{
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
+
 
 
 
